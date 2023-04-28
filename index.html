@@ -1,0 +1,115 @@
+﻿<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Lysholm Dashboard</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+	
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+ <script>
+
+ function setFocus() {
+   var iframe = document.getElementById("kallender");
+   iframe.contentWindow.focus();
+ } 
+
+ </script>
+
+<!-- Subsequent STYLE tag isn't working -->
+
+<style>
+.st-bg {background-color: black;}
+.st-bg-today {background-color: red;}
+.weekday {
+	color: #FFFFFF;
+	font-family: "century gothic", "roboto";
+	font-size: 34px; 
+	display: inline-block; 
+	float: right; 
+	padding-right: 10px;
+	padding-bottom: 5px; 
+	}
+</style>
+
+<meta http-equiv="refresh" content="900">
+</head>
+
+<body style="margin:0; overflow:hidden;" onLoad="setFocus()">
+
+<div style="background-image:url(background.jpg); background-repeat:no-repeat; width:748px; height:1340px; background-size: 100% 100%; margin:0px; padding: 10px; position:relative;">
+
+ <!-- <script src="js/scripts.js"></script> -->
+ <br /><br />
+
+<div style="background-color:rgba(65,65,65, 0.7); width:728px; margin:00px; margin-right:0px; margin-left:10px; margin-top:-20px; position:relative;" >
+
+<iframe src="http://free.timeanddate.com/clock/i58k9ocm/n5288/fn6/fs34/fcfff/tct/pct/ts1" margin-top:15px; margin-left:15px; frameborder="0"; margin-right:0px; width="200"; height="41";align="left"; allowTransparency="true" display: inline-block; float:left;></iframe>
+<nbsp />
+<div id="weekdayText"; class="weekday"; align="right"></div>
+<script>
+	var today = new Date();
+	var day = today.getDay();
+	var month = today.getMonth();
+	var daylist = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	var monthList = ["January","February","March","April","May","June","July","August","September", "October","November","December"];
+	var dateString = daylist[day] +", "+ monthList[month] +" "+ today.getDate();  
+
+  document.getElementById("weekdayText").innerHTML = dateString;
+
+</script>
+
+</div>
+ 
+<br />
+
+<div style="background-color:rgba(65,65,65, 0.7); width:726; margin:00px; margin-right:10px; margin-left:10px; padding-top:10px; padding-bottom:10px;" >
+
+ <center />
+
+<iframe src="MY_GCAL_SOURCE" style="border-width:0;" width="700" height="600" frameborder="0" scrolling="no" class="" id="kallender">
+
+</iframe>
+<script>
+var expand = 0;
+document.addEventListener('keydown', function(event){
+  if(event.keyCode == 87){ //pressed 'W'
+    document.getElementById("kallender").height = "960";
+  }
+
+  else if(event.keyCode == 77){ //pressed 'M'
+    document.getElementById("kallender").height = "600";
+  }
+
+  else if(event.keyCode == 38){ //pressed 'upArrow'
+    expand = !expand;
+    if(expand){
+      document.getElementById("kallender").height = "960";
+    }
+    else{
+      document.getElementById("kallender").height = "600";
+    }
+  }
+  
+
+});
+</script>
+</div>
+
+<br />
+
+<div style="background-color:rgba(65,65,65, 0.7); width:728px; margin:20px; margin-right:10px; margin-left:10px; position: absolute; bottom:0;padding-left:-10px;" >
+
+<center>
+
+<iframe style="margin-left:10px;margin-right:-20px" id="forecast_embed" type="text/html" frameborder="0" height="250" width="700px" src="http://forecast.io/embed/#lat=39.0649&lon=-77.5581&name=Leesburg, VA&color=#32769f&text-color=#ffffff" align="left"> </iframe>
+</center>
+</div>
+<br />
+
+ </div>
+</body>
+</html>
